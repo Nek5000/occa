@@ -117,19 +117,19 @@ if (ENABLE_CUDA)
 
     #find the shared library, rather than the static that find_package returns
     find_library(
-      CUDART_LIB
-      NAMES cudart
+      CUDA_LIB
+      NAMES cuda
       PATHS
       ${CUDA_TOOLKIT_ROOT_DIR}
-      PATH_SUFFIXES lib64 lib
-      DOC "CUDA RT lib location"
+      PATH_SUFFIXES lib64 lib lib64/stubs lib/stubs
+      DOC "CUDA driver lib location"
       )
 
     message("-- CUDA include dirs: ${CUDA_INCLUDE_DIRS}")
-    message("-- CUDA libraries:    ${CUDART_LIB};cuda}")
+    message("-- CUDA driver library: ${CUDA_LIB}")
 
     target_include_directories(libocca PRIVATE ${CUDA_INCLUDE_DIRS})
-    target_link_libraries(libocca PRIVATE ${CUDART_LIB} cuda)
+    target_link_libraries(libocca PRIVATE ${CUDA_LIB})
   else (CUDA_FOUND)
     set(OCCA_CUDA_ENABLED 0)
   endif(CUDA_FOUND)
