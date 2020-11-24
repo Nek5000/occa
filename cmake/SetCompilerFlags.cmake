@@ -19,9 +19,9 @@ set_optional_cxx_flag(SUPPORTED_WARN_CXX_FLAGS "-Wwrite-strings -Wfloat-equal" "
 # Disable warnings
 set_optional_cxx_flag(SUPPORTED_WARN_CXX_FLAGS "-Wno-unused-parameter")
 set_optional_cxx_flag(SUPPORTED_WARN_CXX_FLAGS "-diag-disable 11074 -diag-disable 11076")   # Intel: Disable warnings about inline limits reached
-set_optional_cxx_flag(SUPPORTED_WARN_CXX_FLAGS "--display_error_number")  # Show PGI error numbers
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "PGI")
+  set_optional_cxx_flag(SUPPORTED_WARN_CXX_FLAGS "--display_error_number")  # Show PGI error numbers
   # Workaround for
   # CMakeFiles/tools-trie.dir/trie.cpp.o: in function `occa::trie<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::getLongest(char const*, int) const':
   # occa/include/occa/tools/trie.tpp:238:(.text+0x5cdc): relocation truncated to fit: R_X86_64_PC32 against `.rodata'
@@ -54,7 +54,10 @@ set_optional_c_flag(SUPPORTED_WARN_C_FLAGS "-Wwrite-strings -Wfloat-equal" "-Wca
 # Disble warnings
 set_optional_c_flag(SUPPORTED_WARN_C_FLAGS "-Wno-c++11-long-long")
 set_optional_c_flag(SUPPORTED_WARN_C_FLAGS "-diag-disable 11074 -diag-disable 11076")   # Disable warnings about inline limits reached
-set_optional_c_flag(SUPPORTED_WARN_C_FLAGS "--display_error_number")  # Show PGI error numbers
+if (CMAKE_CXX_COMPILER_ID STREQUAL "PGI")
+  set_optional_cxx_flag(SUPPORTED_WARN_CXX_FLAGS "--display_error_number")  # Show PGI error numbers
+endif()
+
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${SUPPORTED_WARN_C_FLAGS}")
 
