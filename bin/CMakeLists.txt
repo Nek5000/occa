@@ -6,4 +6,4 @@ target_include_directories(occa PRIVATE
 
 install(TARGETS occa DESTINATION bin)
 
-add_custom_command(TARGET occa POST_BUILD COMMAND occa info)
+#add_custom_command(TARGET occa POST_BUILD COMMAND occa info)
