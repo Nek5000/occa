@@ -20,6 +20,7 @@
 #    include <sys/sysinfo.h>
 #  else // OCCA_MACOS_OS
 #    include <mach/mach_host.h>
+#    include <sys/sysctl.h>
 #    ifdef __clang__
 #      include <CoreServices/CoreServices.h>
 #      include <mach/mach_time.h>

@@ -4,6 +4,9 @@
 #  ifndef OCCA_MPI_HEADER
 #  define OCCA_MPI_HEADER
 
+// Workaround for https://github.com/open-mpi/ompi/issues/5157
+#define OMPI_SKIP_MPICXX 1
+
 #include <mpi.h>
 #include <vector>
 
